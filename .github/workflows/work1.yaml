@@ -66,5 +66,5 @@ jobs:
           method: kubeconfig
           kubeconfig: ${{ secrets.KUBE_CONFIG }}
       - run: |
-          kubectl
+          kubectl get nodes
           
