@@ -1,0 +1,12 @@
+name: 'test-every-push'
+on:
+  push:
+    branches:
+      - 'master'
+jobs:
+  echo:
+    name: 출력
+    runs-on: ubuntu-latest
+    steps:
+      - name: 출력
+        run: echo "hi"
