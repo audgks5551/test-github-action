@@ -53,3 +53,5 @@ jobs:
           tags: |
             ghcr.io/${{ secrets.GH_USERNAME }}/nginx-test:${{ needs.tag.outputs.tag_name }},
             ghcr.io/${{ secrets.GH_USERNAME }}/nginx-test:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
