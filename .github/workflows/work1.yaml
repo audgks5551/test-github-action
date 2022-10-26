@@ -58,7 +58,7 @@ jobs:
   deploy:
     name: 쿠버네티스 배포
     runs-on: ubuntu-latest
-    needs: docker
+    needs: [docker, tag]
     steps:
       - uses: actions/checkout@v3
       - uses: azure/k8s-set-context@v2
@@ -66,5 +66,8 @@ jobs:
           method: kubeconfig
           kubeconfig: ${{ secrets.KUBE_CONFIG }}
       - run: |
-          kubectl get nodes
+          envsubst < ./kube/nginx-test.yaml | kubectl apply -f -
+        env:
+          GH_USERNAME: ${{ secrets.GH_USERNAME }}
+          IMAGE_VERSION: ${{ needs.tag.outputs.tag_name }} 
           
