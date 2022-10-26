@@ -66,7 +66,7 @@ jobs:
           method: kubeconfig
           kubeconfig: ${{ secrets.KUBE_CONFIG }}
       - run: |
-          envsubst < ./kube/nginx-test.yaml | kubectl apply -f -
+          envsubst < ./kube/nginx-test.yml | kubectl apply -f -
         env:
           GH_USERNAME: ${{ secrets.GH_USERNAME }}
           IMAGE_VERSION: ${{ needs.tag.outputs.tag_name }} 
